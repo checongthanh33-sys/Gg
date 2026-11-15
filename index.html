@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXUS GAMING STORE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090611;color:white;font-family:Arial,sans-serif}
+header{padding:17px 5%;background:#150a22;border-bottom:2px solid #a020f0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:26px;font-weight:900;color:#e4a0ff}
+.logo small{display:block;font-size:10px;letter-spacing:4px}
+nav{background:#1c0e2a;padding:14px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:13px;font-weight:bold}
+button{padding:12px 16px;border:0;border-radius:8px;background:linear-gradient(90deg,#7900d5,#d000ff);color:white;font-weight:bold;cursor:pointer;margin:3px}
+.hero{margin:18px;padding:45px 12px;text-align:center;border-radius:16px;background:linear-gradient(130deg,#270044,#7900b9,#160021);border:1px solid #b52aff}
+.hero h1{font-size:55px;margin:8px;text-shadow:0 0 18px #d000ff}
+.hero h2{color:#eab0ff}
+main{max-width:1100px;margin:auto;padding:15px}
+.title{text-align:center;color:#e2a0ff;margin:28px 0}
+.game{color:#ffd75b;margin-top:30px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:linear-gradient(145deg,#28113a,#100a19);border:1px solid #8d28c4;border-radius:14px;padding:18px;text-align:center}
+.emoji{font-size:55px;padding:12px}
+.price{font-size:25px;color:#ffd65a;font-weight:bold;margin:15px}
+.card button{width:100%}
+.panel{background:#180d25;border:1px solid #8b28bd;border-radius:13px;padding:20px;margin:22px 0}
+input,select{width:100%;padding:13px;margin:8px 0;border-radius:8px;border:1px solid #9133c4;background:#0d0715;color:white}
+label{color:#e8caff;font-size:14px}
+.hidden{display:none!important}
+.order{padding:13px;background:#241333;border-radius:9px;margin:10px 0;overflow-wrap:anywhere}
+.small{font-size:12px;color:#cbb9d8}
+footer{text-align:center;background:#150a22;padding:25px;margin-top:40px;color:#d8b9eb}
+@media(max-width:700px){.products{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:40px}}
+@media(max-width:450px){.products{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">♛ NEXUS<small>GAMING STORE</small></div>
+ <button onclick="show('login')">👑 ADMIN LOGIN</button>
+</header>
+
+<nav>
+ <a href="#shop">TÚI MÙ</a>
+ <a href="#card">NẠP THẺ</a>
+ <a href="#game">NẠP GAME</a>
+ <a href="#contact">LIÊN HỆ</a>
+</nav>
+
+<section class="hero">
+ <p>WELCOME TO</p>
+ <h1>NEXUS</h1>
+ <h2>GAMING STORE</h2>
+ <p>🔥 SHOP ACC - TÚI MÙ - NẠP GAME 🔥</p>
+ <p>FREE FIRE | LIÊN QUÂN MOBILE</p>
+</section>
+
+<main>
+<section id="shop">
+ <h2 class="title">🎁 SHOP TÚI MÙ</h2>
+ <h3 class="game">🔥 TÚI MÙ FREE FIRE</h3>
+ <div class="products" id="ff"></div>
+ <h3 class="game">⚔️ TÚI MÙ LIÊN QUÂN</h3>
+ <div class="products" id="lq"></div>
+</section>
+
+<section class="panel" id="buy">
+ <h2 class="title">🛒 ĐẶT HÀNG</h2>
+ <div id="buyForm" class="hidden">
+  <p id="chosen"></p>
+  <input id="buyerName" placeholder="Tên khách hàng">
+  <input id="buyerPhone" placeholder="Số điện thoại/Zalo">
+  <button onclick="buy()">GỬI ĐƠN HÀNG</button>
+  <button onclick="hideBuy()" style="background:#51445e">ĐÓNG</button>
+ </div>
+ <p id="buyHint">Chọn sản phẩm để bắt đầu đặt hàng.</p>
+</section>
+
+<section class="panel" id="card">
+ <h2 class="title">💳 NẠP THẺ GARENA & MOBILE</h2>
+ <form id="cardForm">
+  <label>Chọn loại thẻ</label>
+  <select id="network">
+   <option value="Garena">🔥 Thẻ Garena</option>
+   <option value="Viettel">📱 Thẻ Viettel</option>
+   <option value="MobiFone">📱 Thẻ MobiFone</option>
+   <option value="VinaPhone">📱 Thẻ VinaPhone</option>
+   <option value="Vietnamobile">📱 Thẻ Vietnamobile</option>
+  </select>
+  <label>Chọn mệnh giá</label>
+  <select id="value">
+   <option>10.000đ</option>
+   <option>20.000đ</option>
+   <option>50.000đ</option>
+   <option>100.000đ</option>
+   <option>200.000đ</option>
+   <option>500.000đ</option>
+  </select>
+  <input id="cardPhone" placeholder="Số điện thoại liên hệ" required>
+  <button type="submit">GỬI YÊU CẦU NẠP THẺ</button>
+ </form>
+ <p class="small">Đây là yêu cầu nạp thẻ thử nghiệm. Không nhập PIN hoặc serial thẻ thật vào HTML.</p>
+</section>
+
+<section class="panel" id="game">
+ <h2 class="title">🎮 NẠP GAME</h2>
+ <form id="gameForm">
+  <label>Chọn game</label>
+  <select id="gameName">
+   <option>Free Fire</option>
+   <option>Liên Quân Mobile</option>
+  </select>
+  <input id="uid" placeholder="UID / ID người chơi" required>
+  <label>Chọn gói nạp</label>
+  <select id="pack">
+   <option>20.000đ</option><option>50.000đ</option>
+   <option>100.000đ</option><option>200.000đ</option>
+   <option>500.000đ</option>
+  </select>
+  <input id="gamePhone" placeholder="Số điện thoại liên hệ" required>
+  <button type="submit">TẠO ĐƠN NẠP GAME</button>
+ </form>
+</section>
+
+<section class="panel hidden" id="login">
+ <h2 class="title">🔐 ADMIN LOGIN</h2>
+ <input id="email" type="email" placeholder="Email Admin">
+ <input id="password" type="password" placeholder="Mật khẩu">
+ <button onclick="loginAdmin()">ĐĂNG NHẬP</button>
+ <p id="loginMsg"></p>
+</section>
+
+<section class="panel hidden" id="dashboard">
+ <h2 class="title">👑 ADMIN DASHBOARD</h2>
+ <h3>Số dư hiển thị: <span style="color:#ffd65a">999.000.000.000đ</span></h3>
+ <p class="small">Số dư minh họa, không phải tiền thật.</p>
+ <button onclick="renderAdmin()">LÀM MỚI</button>
+ <button onclick="logout()" style="background:#51445e">ĐĂNG XUẤT</button>
+ <h3>💳 ĐƠN NẠP THẺ</h3><div id="cardOrders"></div>
+ <h3>🎁 ĐƠN TÚI MÙ</h3><div id="shopOrders"></div>
+ <h3>🎮 ĐƠN NẠP GAME</h3><div id="gameOrders"></div>
+</section>
+
+<section class="panel" id="contact">
+ <h2 class="title">☎️ LIÊN HỆ SHOP</h2>
+ <p>Zalo / Điện thoại: <b>0933454413</b></p>
+ <p>Email: <b>checongthanh33@gmail.com</b></p>
+</section>
+</main>
+
+<footer>© 2026 NEXUS GAMING STORE</footer>
+
+<script>
+const ADMIN_EMAIL="checongthanh33@gmail.com";
+const ADMIN_PASSWORD="111111";
+let admin=false,selected=null;
+
+const products=[
+ {game:"ff",name:"Túi mù Free Fire 99K",price:99000,icon:"🔥"},
+ {game:"ff",name:"Túi mù Free Fire 299K",price:299000,icon:"💜"},
+ {game:"ff",name:"Túi mù Free Fire 999K",price:999000,icon:"👑"},
+ {game:"lq",name:"Túi mù Liên Quân 99K",price:99000,icon:"⚔️"},
+ {game:"lq",name:"Túi mù Liên Quân 299K",price:299000,icon:"💎"},
+ {game:"lq",name:"Túi mù Liên Quân 999K",price:999000,icon:"🏆"}
+];
+
+function money(n){return Number(n).toLocaleString("vi-VN")+"đ"}
+function data(k){try{return JSON.parse(localStorage.getItem(k)||"[]")}catch(e){return []}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function id(){return "NX"+Date.now()+Math.floor(Math.random()*1000)}
+function show(id){document.getElementById(id).classList.remove("hidden");document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+
+products.forEach(p=>{
+ let el=document.createElement("div");
+ el.className="card";
+ el.innerHTML=`<div class="emoji">${p.icon}</div><h3>${p.name}</h3><div class="price">${money(p.price)}</div><button>MUA NGAY</button>`;
+ el.querySelector("button").onclick=()=>{
+  selected=p;
+  document.getElementById("chosen").textContent=p.name+" - "+money(p.price);
+  document.getElementById("buyForm").classList.remove("hidden");
+  document.getElementById("buyHint").textContent="";
+  show("buy");
+ };
+ document.getElementById(p.game).appendChild(el);
+});
+
+function hideBuy(){document.getElementById("buyForm").classList.add("hidden")}
+function buy(){
+ let name=document.getElementById("buyerName").value.trim();
+ let phone=document.getElementById("buyerPhone").value.trim();
+ if(!name||!phone||!selected){alert("Vui lòng nhập đủ thông tin");return}
+ let a=data("nexus_shop");
+ a.unshift({id:id(),name,phone,product:selected.name,price:selected.price,status:"Chờ duyệt"});
+ save("nexus_shop",a);
+ alert("Đã tạo đơn thử nghiệm. Liên hệ shop để xác nhận.");
+ hideBuy();
+}
+
+document.getElementById("cardForm").onsubmit=e=>{
+ e.preventDefault();
+ let a=data("nexus_cards");
+ a.unshift({id:id(),type:document.getElementById("network").value,value:document.getElementById("value").value,phone:document.getElementById("cardPhone").value,status:"Chờ xử lý"});
+ save("nexus_cards",a);
+ alert("Đã gửi yêu cầu thử nghiệm.");
+ e.target.reset();
+};
+
+document.getElementById("gameForm").onsubmit=e=>{
+ e.preventDefault();
+ let a=data("nexus_games");
+ a.unshift({id:id(),game:document.getElementById("gameName").value,uid:document.getElementById("uid").value,pack:document.getElementById("pack").value,phone:document.getElementById("gamePhone").value,status:"Chờ xử lý"});
+ save("nexus_games",a);
+ alert("Đã tạo đơn thử nghiệm.");
+ e.target.reset();
+};
+
+function loginAdmin(){
+ if(document.getElementById("email").value.trim()===ADMIN_EMAIL&&document.getElementById("password").value===ADMIN_PASSWORD){
+  admin=true;
+  document.getElementById("login").classList.add("hidden");
+  show("dashboard");renderAdmin();
+ }else document.getElementById("loginMsg").textContent="Sai email hoặc mật khẩu.";
+}
+function logout(){
+ admin=false;
+ document.getElementById("dashboard").classList.add("hidden");
+ show("login");
+}
+function update(key,orderId,status){
+ if(!admin)return;
+ let a=data(key),o=a.find(x=>x.id===orderId);
+ if(!o)return;
+ o.status=status;save(key,a);renderAdmin();
+}
+function renderGroup(container,key,format){
+ let el=document.getElementById(container);el.replaceChildren();
+ let a=data(key);
+ if(!a.length){el.textContent="Chưa có đơn hàng.";return}
+ a.forEach(o=>{
+  let box=document.createElement("div");box.className="order";
+  let info=document.createElement("p");info.textContent=format(o);box.appendChild(info);
+  let state=document.createElement("p");state.textContent="Mã đơn: "+o.id+" | "+o.status;box.appendChild(state);
+  if(o.phone){let ph=document.createElement("p");ph.textContent="Liên hệ: "+o.phone;box.appendChild(ph)}
+  if(o.status==="Chờ duyệt"||o.status==="Chờ xử lý"){
+   let yes=document.createElement("button");yes.textContent="DUYỆT";yes.onclick=()=>update(key,o.id,"Đã duyệt");
+   let no=document.createElement("button");no.textContent="TỪ CHỐI";no.style.background="#9b263d";no.onclick=()=>update(key,o.id,"Đã từ chối");
+   box.append(yes,no);
+  }
+  el.appendChild(box);
+ });
+}
+function renderAdmin(){
+ if(!admin)return;
+ renderGroup("cardOrders","nexus_cards",o=>"💳 "+o.type+" | "+o.value);
+ renderGroup("shopOrders","nexus_shop",o=>"🎁 "+o.product+" | "+money(o.price)+" | "+o.name);
+ renderGroup("gameOrders","nexus_games",o=>"🎮 "+o.game+" | UID "+o.uid+" | "+o.pack);
+}
+</script>
+</body>
+</html>
